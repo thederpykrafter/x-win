@@ -1,11 +1,10 @@
 # use @<command> to supress make echoing command
 CC = gcc
 LANG = c
-CFLAGS = -L/usr/X11R6/lib -lX11
+CFLAGS = -lX11
 OUT_FILE = x-win
-TERM_WIDTH = $$(tput cols)
 
-default: all
+default: build
 
 all: build install
 
@@ -27,9 +26,7 @@ uninstall: bin/$(OUT_FILE)
 	@echo -e "\x1b[91mUninstalled \x1b[m$(OUT_FILE)"
 
 run:
-	@echo -en "\x1b[94m"
-	@yes "=" | head -n $(TERM_WIDTH) | tr -d "\n"
-	@echo -en "\x1b[m"
+	@echo -e "\x1b[92mRunning\x1b[m $(OUT_FILE)"
 	@./bin/$(OUT_FILE)
 
 clean veryclean:
